@@ -36,6 +36,8 @@ class NewsAdapter (val context: Context, val article: List<Article>):RecyclerVie
         holder.newsDate.text=article.publishedAt
         holder.newsSource.text= article.source.name
         holder.newsTitle.text=article.title
+
+        //Implementing logic if image is not available
         if (!article.urlToImage.isNullOrEmpty()) {
             try {
                 Glide.with(context)

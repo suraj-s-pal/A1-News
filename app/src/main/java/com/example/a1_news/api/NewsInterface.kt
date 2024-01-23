@@ -26,6 +26,8 @@ interface NewsInterface {
     ): Call<News>
 }
 
+
+//Making a singleton object of retrofit for calling API
 object NewsService {
 
     val newsInstance : NewsInterface
