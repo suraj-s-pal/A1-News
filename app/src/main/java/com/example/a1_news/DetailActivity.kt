@@ -15,7 +15,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_deatail)
 
         val  detailWebView = findViewById<WebView>(R.id.detailWebView)
-        val  progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val  progressBar = findViewById<ProgressBar>(R.id.pgBarMain)
 
         val url = intent.getStringExtra("URL")
         if (url != null){

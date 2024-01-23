@@ -3,6 +3,9 @@ package com.example.a1_news
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.s_news.models.Article
@@ -12,14 +15,18 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
+
     lateinit var adapter: NewsAdapter
     private var articles = mutableListOf<Article>()
     var pageNum = 1
     var totalResults = 0
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val progressBar = findViewById<ProgressBar>(R.id.pgBarMain)
 
         adapter = NewsAdapter(this@MainActivity, articles)
         val newsList = findViewById<RecyclerView>(R.id.newsList)
@@ -39,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                 if (visibleItemCount + firstVisibleItem >= totalItemCount && totalItemCount < totalResults) {
                     // Load more news only if there are more items to load
                     Log.d("last-item", "$totalItemCount")
+
+                    progressBar.visibility = View.VISIBLE
                     pageNum++
                     getNews()
                 }
@@ -54,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         news.enqueue(object : Callback<News> {
             override fun onFailure(call: Call<News>, t: Throwable) {
                 Log.d("Suraj", "Error in fetching news: ${t.message}")
+                Toast.makeText(this@MainActivity, "Error in fetching news", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<News>, response: Response<News>) {
@@ -61,7 +71,8 @@ class MainActivity : AppCompatActivity() {
                 if (news != null) {
                     Log.d("Suraj", news.toString())
                     totalResults = news.totalResults
-
+                    val progressBar = findViewById<ProgressBar>(R.id.pgBarMain)
+                    progressBar.visibility = View.INVISIBLE
                     articles.addAll(news.articles)
                     adapter.notifyDataSetChanged()
                     Log.d("Suraj", "Total items: ${adapter.itemCount}, Total results: $totalResults")

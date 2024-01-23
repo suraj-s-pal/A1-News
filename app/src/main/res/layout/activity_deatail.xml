@@ -23,7 +23,7 @@
     </WebView>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/pgBarMain"
         android:indeterminate="true"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
