@@ -1,6 +1,6 @@
-package com.example.a1_news
+package com.example.a1_news.api
 
-import com.example.s_news.models.News
+import com.example.a1_news.model.News
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -19,6 +19,8 @@ interface NewsInterface {
     fun getHeadlines(
         @Query("country")
         country: String,
+        @Query("category")
+        category: String,
         @Query("page")
         page: Int,
     ): Call<News>

@@ -1,4 +1,4 @@
-package com.example.a1_news
+package com.example.a1_news.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ProgressBar
+import com.example.a1_news.R
 
 class DetailActivity : AppCompatActivity() {
 

@@ -1,4 +1,6 @@
-package com.example.s_news.models
+package com.example.a1_news.model
+
+import com.example.a1_news.model.Article
 
 data class News(
     val articles: List<Article>,

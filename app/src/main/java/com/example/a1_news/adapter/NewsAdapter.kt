@@ -1,4 +1,4 @@
-package com.example.a1_news
+package com.example.a1_news.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.s_news.models.Article
+import com.example.a1_news.R
+import com.example.a1_news.ui.DetailActivity
+import com.example.a1_news.model.Article
 
 class NewsAdapter (val context: Context, val article: List<Article>):RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
 
