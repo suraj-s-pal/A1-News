@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity() {
     private var articles = mutableListOf<Article>()
     var pageNum = 1
     var totalResults = 0
-
+    var isLoading = false
+    var lastVisibleItemPosition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +42,12 @@ class MainActivity : AppCompatActivity() {
 
                 val visibleItemCount = layoutManager.childCount
                 val totalItemCount = layoutManager.itemCount
-                val firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
+                lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
 
-                if (visibleItemCount + firstVisibleItem >= totalItemCount && totalItemCount < totalResults) {
-                    // Load more news only if there are more items to load
-                    Log.d("last-item", "$totalItemCount")
+                // Logic of Scrolling down, load more news only if there are more items to load and not currently loading
+                if (dy > 0 && !isLoading && lastVisibleItemPosition >= totalItemCount - 1) {
+
+                    Log.d("last-item", "$visibleItemCount")
 
                     progressBar.visibility = View.VISIBLE
                     pageNum++
@@ -58,12 +60,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getNews() {
+        isLoading = true
         val news = NewsService.newsInstance.getHeadlines("in", pageNum)
 
         news.enqueue(object : Callback<News> {
             override fun onFailure(call: Call<News>, t: Throwable) {
                 Log.d("Suraj", "Error in fetching news: ${t.message}")
                 Toast.makeText(this@MainActivity, "Error in fetching news", Toast.LENGTH_LONG).show()
+                isLoading = false
             }
 
             override fun onResponse(call: Call<News>, response: Response<News>) {
@@ -77,9 +81,8 @@ class MainActivity : AppCompatActivity() {
                     adapter.notifyDataSetChanged()
                     Log.d("Suraj", "Total items: ${adapter.itemCount}, Total results: $totalResults")
                 }
+                isLoading = false
             }
         })
     }
 }
-
-

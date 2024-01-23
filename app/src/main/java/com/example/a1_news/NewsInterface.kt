@@ -9,8 +9,10 @@ import retrofit2.http.Query
 
 const val BASE_URL = "https://newsapi.org"
 //const val API_KEY = "642867dd40174823808e138684afd0ff"
-const val API_KEY = "6400ede5a803452888f745e0bea10eef"
+//const val API_KEY = "6400ede5a803452888f745e0bea10eef"
 //const val API_KEY = "5ce582463e364b23958a220375d49296"
+//const val API_KEY = "91ec37dff4ab40319b9033cc3b1cb7d1"
+const val API_KEY = "a7d06964bf93483e9d0499e79e20c4cd"
 
 interface NewsInterface {
     @GET("v2/top-headlines?apiKey=$API_KEY")
