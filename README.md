@@ -1,5 +1,5 @@
-A simple News App made with Retrofit that fetches news from newsapi.org and displays it you can choose news according to categories
+A simple News App made with Retrofit that fetches news from newsapi.org. The app allows users to search for news and choose articles based on different categories.
 
 
-https://github.com/suraj-s-pal/A1-News/assets/157046202/0f51f252-bf22-4488-9164-621151705ab7
+https://github.com/suraj-s-pal/A1-News/assets/157046202/d677e0a4-5c13-484c-bf86-96821801e2ac
 
