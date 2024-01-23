@@ -26,11 +26,6 @@ interface NewsInterface {
     ): Call<News>
 
 
-      /*  @GET("v2/everything?&from=2024-01&sortBy=relevancy&apiKey=$API_KEY")
-        fun searchNews(
-            @Query("q") query: String,
-        ): Call<News>*/
-
     @GET("v2/everything?sortBy=relevancy&apiKey=$API_KEY")
     fun searchNews(@Query("q") query: String): Call<News>
 }
